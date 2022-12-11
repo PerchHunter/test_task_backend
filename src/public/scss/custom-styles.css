@@ -1,0 +1,40 @@
+.header-logo {
+  height: 50px;
+}
+
+.my-carousel {
+  padding: 0;
+}
+
+.my-carousel .carousel-item {
+  display: flex;
+  max-height: 500px;
+}
+
+.my-carousel .carousel-item img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.card-body-buttons-wrapper,
+.update-card-buttons-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+@media screen and (max-width: 1199.98px) {
+  .card-body-buttons-wrapper {
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 719.98px) {
+  .update-card-buttons-wrapper {
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 575.98px) {
+  .card-body-buttons-wrapper {
+    flex-direction: row;
+  }
+}/*# sourceMappingURL=custom-styles.css.map */

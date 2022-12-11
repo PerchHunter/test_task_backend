@@ -1,0 +1,127 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.3
+-- https://www.phpmyadmin.net/
+--
+-- Хост: 127.0.0.1:3306
+-- Время создания: Дек 11 2022 г., 13:30
+-- Версия сервера: 8.0.29
+-- Версия PHP: 8.1.5
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- База данных: `real_estate_agency`
+--
+CREATE DATABASE IF NOT EXISTS `real_estate_agency` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `real_estate_agency`;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `real_estate_objects`
+--
+
+CREATE TABLE `real_estate_objects` (
+  `id` int NOT NULL,
+  `name_of_the_object` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `path_to_photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `house_number` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `flat_number` smallint DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `price` int NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `close_at` timestamp NULL DEFAULT NULL,
+  `status` enum('1','2') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '1' COMMENT '1 - Актуально, 2 - Не актуально'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='status: 1 - Актуально, 2 - Не актуально';
+
+--
+-- Дамп данных таблицы `real_estate_objects`
+--
+
+INSERT INTO `real_estate_objects` (`id`, `name_of_the_object`, `path_to_photo`, `address`, `house_number`, `flat_number`, `description`, `price`, `created_at`, `close_at`, `status`) VALUES
+(1, 'Квартира в Ярцево', 'default.png', 'проспект Металлургов', '13', 6, 'Двушка с евроремонтом!!!', 1780000, '2022-12-09 21:10:12', '2022-12-11 08:02:14', '1'),
+(3, 'Дом в Смоленске', 'default.png', 'улица Лавочкина', '5', NULL, 'Квартира в Заднепровском районе', 2100000, '2022-12-09 22:27:31', '2022-12-11 08:02:15', '1'),
+(5, 'Дом в Красном Бору', 'default.png', 'ул. Красноборская', '17', NULL, 'Все удобства рядом', 2000000, '2022-12-09 22:37:21', NULL, '2'),
+(6, 'Дача (Смоленск)', 'default.png', 'улица Котовского', '2а', NULL, 'Отличное место для отдыха', 200000, '2022-12-10 03:16:40', NULL, '2'),
+(7, 'Объект 1', 'default.png', 'ул. Мамадышская', '45', 78, '9-ый дом, 180 кв. метров, двухуровневая', 7500000, '2022-12-11 10:06:17', NULL, '1'),
+(8, 'Объект 2', 'default.png', 'ул. Гагарина', '56', 56, 'ул. Азата Аббасова, д. 11, Казань', 3900000, '2022-12-11 10:07:23', NULL, '1'),
+(9, 'Объект 3', 'default.png', 'ул. Ленинградская 97-01', '97', 1, 'частный дом из сруба, 100 кв.метров', 4500000, '2022-12-11 10:08:17', NULL, '2'),
+(10, 'Объект 4', 'default.png', 'ул. Галимджана Баруди', '59', 78, 'Кирпичный дом, 80 кв. метров', 3200000, '2022-12-11 10:09:23', NULL, '1'),
+(11, 'Объект 5', 'default.png', 'ул. 50 лет Победы', '24', 32, 'Панельный дом, 45 кв. метров, с двумя лоджиями', 2500000, '2022-12-11 10:10:32', NULL, '1'),
+(12, 'Объект 7', 'default.png', 'ул. Лушникова', '50', 7, 'Продается 2-комн. кв., 45.8 м2, 1/5 этаж', 2600000, '2022-12-11 10:14:20', NULL, '2');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `users`
+--
+
+CREATE TABLE `users` (
+  `id` int NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `surname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `login` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `role` enum('1','2') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '2' COMMENT '1 - админ, 2 - пользователь'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='is_admin: 1 - админ, 2 - пользователь.';
+
+--
+-- Дамп данных таблицы `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `surname`, `login`, `email`, `password`, `created_at`, `role`) VALUES
+(1, 'Сергей', 'Феоктистов', 'admin', 'admin@mail.ru', 'c66b2a23a783883cb79ef67f6902b1ba', '2022-12-07 19:20:09', '1'),
+(13, 'Ivan', 'Ivanov', 'Vanya', 'ivan@gmail.ru', '2cd95c5d54b689c6538264c3e8daaa27', '2022-12-08 14:27:46', '2'),
+(14, 'Serg', 'Feo', 'cdc', 'bbbbb@mail.ru', '443a95d6c3c07d58e3e5c3904aa849fe', '2022-12-08 14:28:32', '2'),
+(15, 'Сергей', 'Феоктистов', 'SergFeok', 'bbblblblbl@mail.ru', '3bffc9a8efea6daf7428f576679174fe', '2022-12-11 03:36:36', '2');
+
+--
+-- Индексы сохранённых таблиц
+--
+
+--
+-- Индексы таблицы `real_estate_objects`
+--
+ALTER TABLE `real_estate_objects`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `real_estate_objects_adress_uq` (`address`);
+
+--
+-- Индексы таблицы `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_uq` (`email`),
+  ADD UNIQUE KEY `users_login_uq` (`login`);
+
+--
+-- AUTO_INCREMENT для сохранённых таблиц
+--
+
+--
+-- AUTO_INCREMENT для таблицы `real_estate_objects`
+--
+ALTER TABLE `real_estate_objects`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT для таблицы `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

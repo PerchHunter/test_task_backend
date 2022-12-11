@@ -1,0 +1,19 @@
+{
+    "name": "sergey_feoktistov/test_task_backend",
+    "description": "Тестовое задание на позицию \"Backend - разработчик\"",
+    "type": "project",
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "SergeyFeoktistov\\TestTaskBackend\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Sergey Feoktistov"
+        }
+    ],
+    "require": {
+      "ext-pdo": "*"
+    }
+}
