@@ -42,7 +42,7 @@
 
         <div class="update-card-buttons-wrapper w-100">
             <div class="col-4 mb-3">
-                <button type="submit" class="btn btn-primary" form="update-object-form">Сохранить изменения</button>
+                <button type="submit" class="btn btn-primary" form="update-object-form" name="id" value="<?= $cardData['id']?>">Сохранить изменения</button>
             </div>
 
             <div class="col-4 mb-3">

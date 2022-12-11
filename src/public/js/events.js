@@ -138,6 +138,7 @@ if (updateObjectForm) {
         e.preventDefault();
 
         const body = JSON.stringify({
+            id: e.target.id.value,
             nameOfObject: e.target.nameOfObject.value,
             photos: e.target.photos.value,
             street: e.target.street.value,

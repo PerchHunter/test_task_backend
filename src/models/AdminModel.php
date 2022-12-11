@@ -119,7 +119,7 @@
 							SET name_of_the_object = ?, path_to_photo = ?, address = ?, house_number = ?, flat_number = ?, description = ?, price = ?, status = ?
 							WHERE id = ?";
 
-				$args = [$_PATCH['nameOfObject'], $photo, $_PATCH['street'], (int)$_PATCH['houseNumber'], (int)$_PATCH['flatNumber'], $_PATCH['description'], (int)$_PATCH['price'], (int)$_PATCH['status'], (int)$_GET['id']];
+				$args = [$_PATCH['nameOfObject'], $photo, $_PATCH['street'], (int)$_PATCH['houseNumber'], (int)$_PATCH['flatNumber'], $_PATCH['description'], (int)$_PATCH['price'], (int)$_PATCH['status'], (int)$_PATCH['id']];
 
 				Database::update($sql, $args);
 				return json_encode(['successMessage' => "Информация успешно обновлена"], JSON_UNESCAPED_UNICODE);
